@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>工研院的點點滴滴｜謝謝一起走過的你</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EFF2ED;        /* 霧灰綠：院區的綠意 */
+  --paper:#FBFAF6;     /* 信紙白 */
+  --ink:#2B322E;       /* 松墨 */
+  --ink-soft:#5C665F;
+  --sakura:#C9737F;    /* 櫻花粉：院內櫻花 */
+  --sakura-soft:#EBD3D6;
+  --line:#DDE2D9;
+  --serif:'Noto Serif TC', serif;
+  --sans:'Noto Sans TC', sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.8}
+
+/* ---------- 開場書信 ---------- */
+.hero{max-width:760px;margin:0 auto;padding:72px 20px 48px;text-align:center}
+.hero .eyebrow{font-size:14px;letter-spacing:.35em;color:var(--ink-soft);margin-bottom:14px}
+.hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(30px,6vw,46px);letter-spacing:.08em}
+.hero .sub{margin-top:10px;color:var(--ink-soft);font-size:15px;letter-spacing:.12em}
+
+.letter{
+  max-width:680px;margin:36px auto 0;background:var(--paper);
+  border:1px solid var(--line);border-radius:4px;
+  padding:48px 40px 56px;text-align:left;position:relative;
+  box-shadow:0 14px 40px rgba(43,50,46,.08);
+  background-image:repeating-linear-gradient(transparent,transparent 35px,rgba(94,122,107,.07) 36px);
+  animation:rise .9s ease both .2s;
+}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.letter p{font-family:var(--serif);font-size:17px;margin-bottom:1.2em}
+.letter .greet{font-size:18px;font-weight:600}
+.letter .sign{text-align:right;margin-top:2em;font-family:var(--serif)}
+.letter .sign .name{font-size:20px;font-weight:700}
+.letter .sign .date{font-size:13px;color:var(--ink-soft)}
+.seal{
+  position:absolute;right:34px;bottom:30px;width:72px;height:72px;border-radius:50%;
+  border:2px solid var(--sakura);color:var(--sakura);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-weight:700;font-size:18px;letter-spacing:.15em;
+  transform:rotate(-12deg);opacity:.85;
+}
+
+/* 待填占位 */
+.todo{
+  border:1.5px dashed var(--sakura);background:rgba(201,115,127,.05);
+  border-radius:6px;padding:14px 18px;margin:0 0 1.2em;
+}
+.todo .tag{display:inline-block;font-size:12px;font-weight:700;color:#fff;
+  background:var(--sakura);border-radius:3px;padding:1px 8px;margin-bottom:6px;letter-spacing:.1em}
+.todo p{margin:0;color:var(--ink-soft);font-family:var(--serif)}
+
+/* ---------- 背景音樂 ---------- */
+.music{max-width:680px;margin:48px auto 0;padding:0 20px;text-align:center}
+.music .m-note{font-family:var(--serif);font-size:16px;letter-spacing:.12em;color:var(--ink-soft)}
+.music .m-frame{position:relative;margin-top:16px;border-radius:6px;overflow:hidden;
+  box-shadow:0 10px 30px rgba(43,50,46,.12);aspect-ratio:16/9}
+.music .m-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* ---------- 連續照片牆（等高列・精算尺寸・永不裁切） ---------- */
+.wall{max-width:1240px;margin:56px auto 0;padding:0 14px 80px}
+.seg{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-start;margin-bottom:10px}
+.ph{position:relative;border:0;padding:0;background:#dfe4dc;cursor:pointer;
+  border-radius:4px;overflow:hidden;
+  box-shadow:0 4px 14px rgba(43,50,46,.10);
+  transition:transform .3s ease, box-shadow .3s ease}
+.ph:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(43,50,46,.16)}
+.ph:focus-visible{outline:3px solid var(--sakura);outline-offset:3px}
+.ph img{display:block;width:100%;height:100%}
+.ph .cap{
+  position:absolute;inset:auto 0 0 0;padding:26px 10px 8px;font-size:12px;color:#fff;
+  background:linear-gradient(transparent,rgba(30,35,32,.78));
+  opacity:0;transition:opacity .25s;text-align:left;line-height:1.5;pointer-events:none}
+.ph:hover .cap,.ph:focus .cap{opacity:1}
+
+/* 穿插的回顧文字 */
+.interlude{display:flex;justify-content:center;margin:34px 0 22px}
+.interlude .inner{max-width:620px;width:100%;text-align:center}
+.interlude .todo{text-align:left}
+.interlude .deco{color:var(--ink-soft);letter-spacing:.5em;font-size:13px;margin-bottom:14px}
+
+/* ---------- 燈箱 ---------- */
+.lb{position:fixed;inset:0;background:rgba(30,34,31,.94);z-index:100;display:none;
+  flex-direction:column;align-items:center;justify-content:center;padding:20px}
+.lb.open{display:flex}
+.lb img{max-width:92vw;max-height:76vh;border-radius:4px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.lb .lb-cap{color:#fff;text-align:center;margin-top:18px;max-width:680px;
+  font-family:var(--serif);font-size:17px;line-height:1.7}
+.lb button{position:absolute;background:none;border:none;color:#fff;cursor:pointer;
+  font-size:34px;opacity:.75;transition:.2s;padding:14px}
+.lb button:hover{opacity:1}
+.lb .x{top:10px;right:16px}
+.lb .prev{left:6px;top:50%;transform:translateY(-50%)}
+.lb .next{right:6px;top:50%;transform:translateY(-50%)}
+.lb button:focus-visible{outline:2px solid var(--sakura);border-radius:4px}
+
+footer{text-align:center;padding:20px 20px 70px;color:var(--ink-soft);font-size:14px;letter-spacing:.1em}
+footer .heart{color:var(--sakura)}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ========== 開場：一封信 ========== -->
+<header class="hero">
+  <div class="eyebrow">A LETTER OF THANKS</div>
+  <h1>工研院的點點滴滴</h1>
+  <div class="sub">謝謝每一位一起走過這段路的你</div>
+
+  <div class="letter">
+    <p class="greet">親愛的工研院夥伴們：</p>
+
+    <p>今天，是我在工研院的最後一天。回首這兩年半，滿滿的收穫與成長。</p>
+
+    <p>從小到大，我一直以為好好讀書、找到一份工作，就是人生的終點。直到真正開始工作才明白，那其實是另一段困難與挑戰的起點——因為不熟悉格式而被退了三次的請購單、第一次籌辦會議、跑查驗證流程、舉辦百人規模的線上線下課程、來回修改了十二次的專案……如今回頭看，才發現自己不知不覺已經走了好遠好遠。那些曾經的困難，都幻化成生命中重要的回憶與學習，讓我一路成長。</p>
+
+    <p>整理照片的時候，重溫了好多有趣的時刻，想與大家一起分享、一起回顧。</p>
+
+    <p>謝謝工研院，當初願意給剛畢業、毫無工作經驗的我一個機會，讓我踏進組織永續與人才發展的領域，真的站在了巨人的肩膀上，看見不一樣的視野——認識了台灣的產業、最前瞻的永續議題、如何推動組織的人才發展與友善職場，以及 AI 培育賦能與職場應用；更認識了一群優秀的夥伴，從各位身上學到非常多。也謝謝這裡給我的自由與信任——每一年，我都能認真思考自己的個人發展計畫，投入熱愛的事情、努力學習，再把所學運用到工作中發揮價值，是件非常有成就感的事情。</p>
+
+    <p>離開工研院，對我來說是萬分不捨、也非常困難的決定。但我相信，我與工研院的故事只是一個逗號，未來仍有許多種可能。就容許我任性一次，去業界看看，歷練不一樣的職場風景。</p>
+
+    <p>再次感謝每一位合作過的夥伴，我真的從大家身上學到太多。未來也請保持聯繫——這是我的 <a href="https://www.linkedin.com/in/tina-chien-294186228" target="_blank" rel="noopener" style="color:var(--sakura);font-weight:600">LinkedIn</a>，期待在人生的下個路口再相遇。</p>
+
+    <p>最後，真心祝福大家：生活、家庭、工作、健康，一切順心、開心。</p>
+
+    <div class="sign">
+      <div class="name">簡妍庭 敬上</div>
+      <div class="date">2026 年 7 月 6 日</div>
+    </div>
+    <div class="seal">感謝</div>
+  </div>
+</header>
+
+<!-- ========== 背景音樂（官方 YouTube 嵌入） ========== -->
+<section class="music">
+  <div class="m-note">♪ 邊聽邊看——蘇打綠〈當我們一起走過〉</div>
+  <div class="m-frame">
+    <iframe src="https://www.youtube.com/embed/tAWPPcPaiQo" title="蘇打綠 當我們一起走過"
+      allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</section>
+
+<!-- ========== 連續照片牆 ========== -->
+<main class="wall" id="wall"></main>
+
+<!-- ========== 燈箱 ========== -->
+<div class="lb" id="lb" role="dialog" aria-modal="true">
+  <button class="x" aria-label="關閉" onclick="closeLB()">×</button>
+  <button class="prev" aria-label="上一張" onclick="stepLB(-1)">‹</button>
+  <img id="lbImg" src="" alt="">
+  <div class="lb-cap" id="lbTxt"></div>
+  <button class="next" aria-label="下一張" onclick="stepLB(1)">›</button>
+</div>
+
+<footer>謝謝你曾與我同行 <span class="heart">♥</span><br>這個網頁僅分享給收到信的你，請不要公開轉傳</footer>
+
+<script>
+/* 照片資料：n=檔名編號, imp=重要程度(高/中/低), cap=備註
+   （cat 僅作為排序整理參考，頁面上不顯示分類） */
+const DATA = [
+{n:1,ar:0.5625,cat:"風景",imp:"低",cap:"聖誕樹"},
+{n:2,ar:0.6822,cat:"參與活動",imp:"低",cap:"第一次參加尾牙"},
+{n:3,ar:1.7778,cat:"風景",imp:"中",cap:"櫻花滿開的院區"},
+{n:4,ar:0.5625,cat:"參與活動",imp:"低",cap:"新人活力營"},
+{n:5,ar:1.3333,cat:"舉辦活動",imp:"低",cap:"人權盡職調查，認真小組討論"},
+{n:6,ar:1.3333,cat:"舉辦活動",imp:"中",cap:"人權盡職調查大合照"},
+{n:7,ar:1.3333,cat:"參與活動",imp:"低",cap:"清大心諮學弟妹參訪，工研院真是幸福職場呀～"},
+{n:8,ar:1.3322,cat:"參與活動",imp:"低",cap:"跟清大心諮學弟妹合照，青春"},
+{n:9,ar:1.6652,cat:"參與活動",imp:"中",cap:"嘉文舉辦HR處內AI交流活動"},
+{n:10,ar:1.3333,cat:"舉辦活動",imp:"低",cap:"舉辦實體的身心靈課程~攝影治療"},
+{n:11,ar:1.3333,cat:"舉辦活動",imp:"中",cap:"Linkedin Learning合作夥伴來訪交流"},
+{n:12,ar:1.3333,cat:"舉辦活動",imp:"中",cap:"舉辦了N場的永續委員會議，從手忙腳亂到能獨當一面"},
+{n:13,ar:1.25,cat:"聚餐合照",imp:"低",cap:"部門聚餐，歡送退休娟姊、榮姊"},
+{n:14,ar:1.6227,cat:"舉辦活動",imp:"中",cap:"DEI講座，發覺自己的無意識偏見"},
+{n:15,ar:1.3333,cat:"舉辦活動",imp:"高",cap:"站在工研院巨人的肩膀上，看到永續無限可能，獲得天下永續三獎"},
+{n:16,ar:1.3333,cat:"參與活動",imp:"低",cap:"學習發展組慶生"},
+{n:17,ar:1.3333,cat:"舉辦活動",imp:"中",cap:"HR Day春之遊之此照片不能只有我看到"},
+{n:18,ar:0.75,cat:"舉辦活動",imp:"中",cap:"HR Day春之遊工作人員場勘"},
+{n:19,ar:1.7778,cat:"舉辦活動",imp:"中",cap:"DEI好玩的工作坊，翻轉隱形偏見"},
+{n:20,ar:1.7778,cat:"舉辦活動",imp:"中",cap:"DEI好玩的工作坊之今日冠軍MVP"},
+{n:21,ar:1.3333,cat:"舉辦活動",imp:"中",cap:"HR Day春之遊藍色小隊"},
+{n:22,ar:1.3333,cat:"參與活動",imp:"中",cap:"跟外籍同仁一起野餐、聊天！"},
+{n:23,ar:1.4995,cat:"參與活動",imp:"中",cap:"野餐大合照"},
+{n:24,ar:1.3333,cat:"舉辦活動",imp:"中",cap:"舉辦永續桌遊"},
+{n:25,ar:1.4995,cat:"舉辦活動",imp:"低",cap:"尋找工研大秘寶，分享工研院永續秘密"},
+{n:26,ar:0.75,cat:"舉辦活動",imp:"中",cap:"我們是Learning Champion耶~"},
+{n:27,ar:1.3755,cat:"共學圈",imp:"中",cap:"組團一起學習吧！你今天學了沒~"},
+{n:28,ar:0.75,cat:"參與活動",imp:"低",cap:"好玩的HR Day，超可愛的照片"},
+{n:29,ar:1.6097,cat:"舉辦活動",imp:"低",cap:"主管們一起來參與好玩的DEI工作坊"},
+{n:30,ar:1.3333,cat:"舉辦活動",imp:"低",cap:"永續桌遊之我們的福爾摩沙"},
+{n:31,ar:0.75,cat:"參與活動",imp:"低",cap:"是副總統耶~~好近好近"},
+{n:32,ar:1.4995,cat:"舉辦活動",imp:"低",cap:"HR Day之阿君的尋父日記~"},
+{n:33,ar:1.4995,cat:"舉辦活動",imp:"低",cap:"HR Day之仙杜瑞kay~"},
+{n:34,ar:1.4995,cat:"舉辦活動",imp:"中",cap:"HR Day之華麗大合照"},
+{n:35,ar:1.4995,cat:"舉辦活動",imp:"中",cap:"HR Day華麗的工作人員們~"},
+{n:36,ar:0.75,cat:"參與活動",imp:"低",cap:"超級巨大厲害的無人機"},
+{n:37,ar:1.7778,cat:"聚餐合照",imp:"中",cap:"部門聚餐之請看後面的聖誕樹"},
+{n:38,ar:1.3333,cat:"聚餐合照",imp:"低",cap:"部門聚餐，八分飽吃吃喝喝"},
+{n:39,ar:1.4995,cat:"參與活動",imp:"低",cap:"尾牙然後跟永續小夥伴們合照到了"},
+{n:40,ar:1.4178,cat:"舉辦活動",imp:"高",cap:"Linedin Learning的獲獎照片~大家好厲害"},
+{n:41,ar:1.3333,cat:"風景",imp:"中",cap:"院內櫻花，水！"},
+{n:42,ar:0.75,cat:"風景",imp:"低",cap:"櫻花與藍天，水水！"},
+{n:43,ar:1.4995,cat:"參與活動",imp:"中",cap:"HR Day一起成為禮儀大師"},
+{n:44,ar:1.1827,cat:"舉辦活動",imp:"中",cap:"永續講座，講師是國際級講師，何德何能有榮幸邀請到超厲害的講師"},
+{n:45,ar:1.3333,cat:"舉辦活動",imp:"中",cap:"職場不法侵害上路囉！大家一起學新法尊知識"},
+{n:46,ar:1.3333,cat:"聚餐合照",imp:"中",cap:"部門聚餐，歡送聚餐~捨不得大家嗚嗚嗚"},
+{n:47,ar:0.5563,cat:"參與活動",imp:"低",cap:"特派報某期歡慶聖誕節的３０秒動動"},
+{n:48,ar:0.75,cat:"聚餐合照",imp:"低",cap:"跟大家的各種合照"},
+{n:49,ar:1.7778,cat:"聚餐合照",imp:"低",cap:"跟大家的各種合照"},
+{n:50,ar:0.75,cat:"聚餐合照",imp:"低",cap:"跟大家的各種合照"},
+{n:51,ar:0.75,cat:"聚餐合照",imp:"低",cap:"跟大家的各種合照"},
+{n:52,ar:0.75,cat:"聚餐合照",imp:"低",cap:"跟大家的各種合照"},
+{n:53,ar:0.75,cat:"聚餐合照",imp:"低",cap:"跟大家的各種合照"},
+{n:54,ar:0.75,cat:"聚餐合照",imp:"低",cap:"跟大家的各種合照"},
+{n:55,ar:0.75,cat:"聚餐合照",imp:"低",cap:"跟大家的各種合照"},
+{n:56,ar:2.2008,cat:"參與活動",imp:"高",cap:"參加新人活力，認識跨部門的新捧油"},
+{n:57,ar:1.4995,cat:"參與活動",imp:"中",cap:"HR Day白隊大勝利，多一顆甜甜圈"},
+{n:58,ar:1.4995,cat:"參與活動",imp:"高",cap:"HR Day的AI分享與交流"},
+{n:59,ar:1.2732,cat:"舉辦活動",imp:"低",cap:"第N場的線上身心靈活動，療癒時光"},
+{n:60,ar:1.3333,cat:"聚餐合照",imp:"低",cap:"部門聚餐之猜猜是誰的生日咧?"},
+{n:61,ar:1.7778,cat:"聚餐合照",imp:"中",cap:"部門交換禮物"},
+{n:62,ar:1.4995,cat:"聚餐合照",imp:"高",cap:"第二屆AI競賽開跑啦~"},
+{n:63,ar:0.75,cat:"聚餐合照",imp:"低",cap:"跟大家的各種合照"},
+{n:64,ar:0.75,cat:"聚餐合照",imp:"低",cap:"跟大家的各種合照"},
+{n:65,ar:0.75,cat:"聚餐合照",imp:"低",cap:"跟大家的各種合照"},
+{n:66,ar:0.75,cat:"聚餐合照",imp:"低",cap:"跟大家的各種合照"},
+{n:67,ar:0.75,cat:"聚餐合照",imp:"低",cap:"跟大家的各種合照"},
+{n:68,ar:0.75,cat:"聚餐合照",imp:"低",cap:"跟大家的各種合照"},
+{n:69,ar:0.75,cat:"聚餐合照",imp:"低",cap:"跟大家的各種合照"},
+{n:70,ar:0.75,cat:"聚餐合照",imp:"低",cap:"跟大家的各種合照"},
+{n:71,ar:1.3333,cat:"聚餐合照",imp:"中",cap:"運動健身小夥伴"},
+{n:72,ar:0.75,cat:"聚餐合照",imp:"低",cap:"跟大家的各種合照"},
+{n:73,ar:1.3333,cat:"聚餐合照",imp:"低",cap:"跟大家的各種合照"},
+{n:74,ar:1.9394,cat:"舉辦活動",imp:"中",brk:1,cap:"第一屆AI大賞，擁抱AI，百Flow齊Fun"},
+{n:75,ar:1.3333,cat:"舉辦活動",imp:"中",cap:"用powerBI做數據儀表板"}
+];
+
+/* 回顧文字穿插位置：在指定編號的照片「之後」插入一段文字
+   （位置和內容都可以再調整，先用占位示意） */
+const INTERLUDES = {};
+
+function render(){
+  const w = document.getElementById('wall');
+  let html = '<div class="seg">';
+  DATA.forEach(d=>{
+    html += `
+      <button class="ph" data-ar="${d.ar}" data-imp="${d.imp}" ${d.brk?`data-brk="1"`:``}
+        onclick="openLB(${d.n})" aria-label="${d.cap}">
+        <img src="photos/${d.n}.jpg" alt="${d.cap}" loading="lazy">
+        <span class="cap">${d.cap}</span>
+      </button>`;
+    if(INTERLUDES[d.n]){
+      html += `</div>
+      <div class="interlude"><div class="inner">
+        <div class="deco">◦ ◦ ◦</div>
+        <div class="todo"><span class="tag">待填｜回顧文字</span><p>${INTERLUDES[d.n]}</p></div>
+      </div></div>
+      <div class="seg">`;
+    }
+  });
+  html += '</div>';
+  w.innerHTML = html;
+  layout();
+}
+
+/* 等高列排版引擎：同列等高、左右切齊，框與照片比例一致 -> 不裁切 */
+function layout(){
+  const GAP = 10;
+  const mobile = window.innerWidth <= 640;
+  const T = mobile ? {低:115, 中:160, 高:235} : {低:190, 中:262, 高:385};
+  document.querySelectorAll('.seg').forEach(seg=>{
+    const items = [...seg.querySelectorAll('.ph')];
+    const W = seg.clientWidth;
+    let row = [];
+    const flush = (isLast)=>{
+      if(!row.length) return;
+      const sumAr = row.reduce((s,e)=>s+parseFloat(e.dataset.ar),0);
+      const avgT = row.reduce((s,e)=>s+T[e.dataset.imp],0)/row.length;
+      let H = (W - GAP*(row.length-1)) / sumAr;
+      if(isLast && H > avgT) H = avgT;
+      row.forEach(e=>{
+        const ar = parseFloat(e.dataset.ar);
+        e.style.width  = (ar*H).toFixed(2)+'px';
+        e.style.height = H.toFixed(2)+'px';
+      });
+      row = [];
+    };
+    items.forEach(e=>{
+      if(e.dataset.brk) flush(false);    // 強制換列
+      row.push(e);
+      const sumAr = row.reduce((s,x)=>s+parseFloat(x.dataset.ar),0);
+      const avgT = row.reduce((s,x)=>s+T[x.dataset.imp],0)/row.length;
+      const H = (W - GAP*(row.length-1)) / sumAr;
+      if(H <= avgT) flush(false);
+    });
+    flush(true);
+  });
+}
+let rsz;
+window.addEventListener('resize',()=>{clearTimeout(rsz);rsz=setTimeout(layout,120);});
+
+let lbIdx = 0;
+function openLB(n){
+  lbIdx = DATA.findIndex(d=>d.n===n);
+  showLB(); document.getElementById('lb').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function showLB(){
+  const d = DATA[lbIdx];
+  document.getElementById('lbImg').src = `photos/${d.n}.jpg`;
+  document.getElementById('lbImg').alt = d.cap;
+  document.getElementById('lbTxt').textContent = d.cap;
+}
+function stepLB(dir){ lbIdx=(lbIdx+dir+DATA.length)%DATA.length; showLB(); }
+function closeLB(){ document.getElementById('lb').classList.remove('open');
+  document.body.style.overflow=''; }
+
+document.getElementById('lb').addEventListener('click',e=>{ if(e.target.id==='lb') closeLB(); });
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('lb').classList.contains('open')) return;
+  if(e.key==='Escape') closeLB();
+  if(e.key==='ArrowLeft') stepLB(-1);
+  if(e.key==='ArrowRight') stepLB(1);
+});
+
+render();
+</script>
+</body>
+</html>
