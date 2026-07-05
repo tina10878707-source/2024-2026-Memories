@@ -259,7 +259,7 @@ function render(){
     html += `
       <button class="ph" data-ar="${d.ar}" data-imp="${d.imp}" ${d.brk?`data-brk="1"`:``}
         onclick="openLB(${d.n})" aria-label="${d.cap}">
-        <img src="photos/${d.n}.jpg" alt="${d.cap}" loading="lazy">
+        <img src="${d.n}.jpg" alt="${d.cap}" loading="lazy">
         <span class="cap">${d.cap}</span>
       </button>`;
     if(INTERLUDES[d.n]){
@@ -320,7 +320,7 @@ function openLB(n){
 }
 function showLB(){
   const d = DATA[lbIdx];
-  document.getElementById('lbImg').src = `photos/${d.n}.jpg`;
+  document.getElementById('lbImg').src = `${d.n}.jpg`;
   document.getElementById('lbImg').alt = d.cap;
   document.getElementById('lbTxt').textContent = d.cap;
 }
